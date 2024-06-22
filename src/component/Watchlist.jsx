@@ -1,4 +1,9 @@
+import Movietag from "./Movietag";
 const Watchlist = () => {
-  return <div>Hellow Deepesh this is your watchlist</div>;
+  return (
+    <div>
+      <Movietag />
+    </div>
+  );
 };
 export default Watchlist;

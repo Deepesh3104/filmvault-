@@ -1,9 +1,26 @@
 import Moviecard from "./Moviecard";
 import axios from "axios";
+import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
+
 import { useEffect, useState } from "react";
 const Movies = () => {
   const [page, setPage] = useState(1);
+  const [clicked, setClicked] = useState(false);
+  const [textcolor, setTextcolor] = useState("text-blue-600");
   const [movies, setMovies] = useState([]);
+
+  const handledleftArrow = () => {
+    // setClicked(true);
+    setPage(page > 1 ? page - 1 : 1);
+    setTextcolor(textcolor === "text-black" ? "text-white" : "text-black");
+  };
+  const handleRightArrow = () => {
+    // setClicked(true);
+    setPage(page + 1);
+    setTextcolor(textcolor === "text-black" ? "text-white" : "text-black");
+  };
+
   useEffect(() => {
     const FetchPopularmovies = async () => {
       try {
@@ -26,6 +43,11 @@ const Movies = () => {
       </div>
       <div className="">
         <Moviecard movies={movies} />
+      </div>
+      <div className="gap-8 mb-4 flex items-center bg-gray-900/60 p-4 justify-center cursor-pointer">
+        <FaArrowLeft onClick={handledleftArrow} values={page} />
+        <div className="font-bold">{page}</div>
+        <FaArrowRight onClick={handleRightArrow} values={page} />
       </div>
     </div>
   );
