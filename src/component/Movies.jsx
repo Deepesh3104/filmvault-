@@ -4,7 +4,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 
 import { useEffect, useState } from "react";
-const Movies = () => {
+const Movies = ({ handlewatchlist, deletewatchlist, watchlist }) => {
   const [page, setPage] = useState(1);
   const [clicked, setClicked] = useState(false);
   const [textcolor, setTextcolor] = useState("text-blue-600");
@@ -42,7 +42,12 @@ const Movies = () => {
         Trending Movies
       </div>
       <div className="">
-        <Moviecard movies={movies} />
+        <Moviecard
+          handlewatchlist={handlewatchlist}
+          deletewatchlist={deletewatchlist}
+          movies={movies}
+          watchlist={watchlist}
+        />
       </div>
       <div className="gap-8 mb-4 flex items-center bg-gray-900/60 p-4 justify-center cursor-pointer">
         <FaArrowLeft onClick={handledleftArrow} values={page} />
