@@ -58,6 +58,7 @@ const Home = () => {
               <Watchlist
                 watchlist={watchlist}
                 deletewatchlist={deletewatchlist}
+                setWatchlist={setWatchlist}
               />
             }
           />

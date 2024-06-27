@@ -1,10 +1,27 @@
 import { useState } from "react";
 import Movietag from "./Movietag";
-const Watchlist = ({ watchlist, deletewatchlist }) => {
+
+const Watchlist = ({ watchlist, deletewatchlist, setWatchlist }) => {
   const [search, setSearch] = useState("");
+
   const handlesearch = (e) => {
     setSearch(e.target.value);
   };
+
+  const increasing = () => {
+    const sortinc = [...watchlist].sort((a, b) => {
+      return a.vote_average - b.vote_average;
+    });
+    setWatchlist(sortinc);
+  };
+
+  const decreasing = () => {
+    const sortdec = [...watchlist].sort((a, b) => {
+      return b.vote_average - a.vote_average;
+    });
+    setWatchlist(sortdec);
+  };
+
   return (
     <div>
       <Movietag />
@@ -17,13 +34,24 @@ const Watchlist = ({ watchlist, deletewatchlist }) => {
         />
       </div>
       <div className="border border-gray-200 rounded-lg m-8">
-        <table className="w-full text-gray-500 text-center ">
-          <thead className="border-b-2 ">
+        <table className="w-full text-gray-500 text-center">
+          <thead className="border-b-2">
             <tr>
-              <th className="p-4 ">Name</th>
-              <th className="p-4">Rating</th>
+              <th className="p-4">Name</th>
+              <th className="p-4">
+                <div className="flex items-center justify-center">
+                  <button onClick={increasing} className="px-2">
+                    ↑
+                  </button>
+                  <span className="p-4">Rating</span>
+                  <button onClick={decreasing} className="px-2">
+                    ↓
+                  </button>
+                </div>
+              </th>
               <th className="p-4">Popularity</th>
               <th className="p-4">Genre</th>
+              <th className="p-4">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -62,4 +90,5 @@ const Watchlist = ({ watchlist, deletewatchlist }) => {
     </div>
   );
 };
+
 export default Watchlist;
